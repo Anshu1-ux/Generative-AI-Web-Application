@@ -6,46 +6,44 @@ A Retrieval-Augmented Generation (RAG) powered web service designed to deliver p
 
 ## Overview
 
-This application bridges the gap between custom document repositories and Large Language Models. By implementing a Retrieval-Augmented Generation (RAG) pipeline, it retrieves relevant source context before generating responses, significantly reducing model hallucination and ensuring accurate answers grounded in domain-specific data.
+This application bridges the gap between custom document repositories and Large Language Models. By implementing a Retrieval-Augmented Generation (RAG) pipeline, it retrieves relevant source context before generating responses, ensuring factual, domain-specific answers with reduced model hallucination.
 
 ---
 
 ## Key Features
 
-- **Document-Grounded Q&A:** Answers user queries using factual context extracted directly from custom documents.
-- **RAG Pipeline Integration:** Performs semantic search across vector embeddings to supply relevant context to the LLM.
-- **Dual Interface / API Support:** Interactive UI built with Gradio alongside a REST backend powered by Flask.
-- **Modular Architecture:** Clean separation between document processing, vector search, and API serving.
+- **Document-Grounded Q&A:** Answers user queries using factual context extracted directly from custom vector embeddings.
+- **RAG Pipeline Integration:** Utilizes LangChain and FAISS for fast semantic search and context injection.
+- **Unified Web UI & REST API:** Features a Gradio chat interface mounted directly on a Flask server, exposing both a web interface (`/`) and an API endpoint (`/api/chat`).
+- **Graceful Fallback:** Handles unindexed document states smoothly while vector stores are being built.
 
 ---
 
 ## Tech Stack
 
-- **Backend Framework:** Python, Flask
-- **Frontend / Interface:** Gradio
-- **AI / RAG Frameworks:** LangChain / LlamaIndex
-- **Embeddings & Vector Store:** OpenAI Embeddings / Hugging Face, FAISS / ChromaDB
+- **Backend Server:** Flask
+- **UI Interface:** Gradio (mounted on Flask)
+- **RAG & LLM Framework:** LangChain, OpenAI (`gpt-3.5-turbo`)
+- **Vector Storage & Embeddings:** FAISS, OpenAI Embeddings
 
 ---
 
 ## Project Structure
 
 ```text
-├── app.py              # Application entry point (Flask / Gradio)
-├── core/
-│   ├── retriever.py    # Document loading and vector search
-│   └── generator.py    # Context synthesis and LLM prompting
-├── data/               # Source documents and datasets
+├── app.py              # Main entry point serving Flask API and Gradio UI
+├── vectorstore/        # Local FAISS index files (generated after ingestion)
 ├── requirements.txt    # Python dependencies
-├── LICENSE             # Project license
+├── .env                # Environment variables (API keys)
+├── LICENSE             # License file
 └── README.md           # Project documentation
 
-___
+---
 
 Prerequisites
 Python 3.9 or higher
 
-pip and virtualenv installed
+An active OpenAI API Key
 
 Installation
 Clone the repository:
@@ -62,20 +60,20 @@ Install dependencies:
 
 Bash
 pip install -r requirements.txt
-Environment Variables:
+Environment Setup:
 Create a .env file in the root directory:
 
 Code snippet
-OPENAI_API_KEY=your_api_key_here
+OPENAI_API_KEY=your_openai_api_key_here
 PORT=5000
-Usage
-Run the web service locally:
+Running the Application
+Start the unified server with:
 
 Bash
 python app.py
-Access the Gradio interface at http://localhost:7860
+Web Chat Interface: Open http://localhost:5000/ in your browser.
 
-Access the Flask API at http://localhost:5000
+REST API Endpoint: Send POST requests to http://localhost:5000/api/chat with JSON body {"message": "Your question"}.
 
 License
 This project is licensed under the MIT License.
