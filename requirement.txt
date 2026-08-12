@@ -1,0 +1,23 @@
+# Web Frameworks & UI
+flask>=3.0.0
+gradio>=4.0.0
+gunicorn>=21.2.0
+
+# RAG & LLM Orchestration
+langchain>=0.1.0
+langchain-community>=0.0.20
+langchain-openai>=0.0.5
+
+# Embeddings & Vector Storage
+faiss-cpu>=1.7.4
+chromadb>=0.4.22
+sentence-transformers>=2.2.2
+
+# Document Parsers & Handling
+pypdf>=4.0.0
+python-docx>=1.1.0
+
+# Utilities & Environment
+python-dotenv>=1.0.0
+requests>=2.31.0
+pydantic>=2.0.0
