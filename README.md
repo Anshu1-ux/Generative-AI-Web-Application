@@ -39,7 +39,9 @@ This application bridges the gap between custom document repositories and Large 
 ├── requirements.txt    # Python dependencies
 ├── LICENSE             # Project license
 └── README.md           # Project documentation
-Getting Started
+
+___
+
 Prerequisites
 Python 3.9 or higher
 
